@@ -17,5 +17,5 @@
                 ring.middleware.params/wrap-params
                 (wrap-json-body {:keywords? true})
                 wrap-json-response)]
-    (print (str "🚀 app on " port))
+    (println (str "🚀 app on " port))
     (jetty/run-jetty app {:port port})))
