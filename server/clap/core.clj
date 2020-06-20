@@ -6,9 +6,12 @@
             [ring.middleware.params :refer [wrap-params]]
             [ring.util.response :refer [response]]))
 
+(defn ping-handler [req]
+  (response {:message "🏓 pong!"}))
+
 (defroutes
   routes
-  (GET "/api/ping" [] (fn [_] (response {:message "🏓 pong"}))))
+  (GET "/api/ping" [] ping-handler))
 
 (defn -main []
   (let [port (Integer/parseInt (System/getenv "PORT"))

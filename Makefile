@@ -1,2 +1,2 @@
-dev:
-	PORT=4000 clj -m clap.core
+nrepl:
+	PORT=4000 clj -R:nREPL -m nrepl.cmdline -p 3434 -i
