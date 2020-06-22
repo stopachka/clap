@@ -17,6 +17,10 @@
 
 (defroutes
   routes
+
+  ;; ---
+  ;; api
+
   (GET "/api/ping" [] ping-handler)
 
   ;; ---
