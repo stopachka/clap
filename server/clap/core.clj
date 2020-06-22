@@ -5,16 +5,25 @@
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
             [ring.middleware.params :refer [wrap-params]]
-            [ring.util.response :refer [response resource-response]]))
+            [ring.util.response :as resp :refer [response resource-response]]))
 
 (defn ping-handler [req]
   (response {:message "🏓 pong!"}))
 
+(def static-root "public")
+(defn render-static-file [filename]
+  (resp/content-type
+    (resp/resource-response filename {:root static-root}) "text/html"))
+
 (defroutes
   routes
   (GET "/api/ping" [] ping-handler)
-  (resources "/" {:root "build"})
-  (GET "*" [] (fn [_] (response {:message "404"}))))
+
+  ;; ---
+  ;; serve static assets
+
+  (resources "/" {:root static-root})
+  (GET "*" [] (render-static-file "index.html")))
 
 (defn -main []
   (let [port (Integer/parseInt (System/getenv "PORT"))
