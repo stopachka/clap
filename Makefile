@@ -12,3 +12,15 @@ dev-tmux:
 	tmux split-window
 	tmux send 'echo "time to roll 🚀"' ENTER
 	tmux a
+
+prod-deploy:
+	echo "1. build client"
+	cd client && yarn build
+
+	echo "2. move to resources"
+	cd .. 
+	rm -rf resources/public
+	mv client/build resources/public
+
+	echo "3. build uberjar"
+	clj -A:uberjar

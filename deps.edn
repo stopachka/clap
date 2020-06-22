@@ -5,4 +5,8 @@
   compojure/compojure {:mvn/version "1.6.1"}}
  :aliases {:nREPL
            {:extra-deps
-            {nrepl/nrepl {:mvn/version "0.7.0"}}  }}}
+            {nrepl/nrepl {:mvn/version "0.7.0"}}}
+           :uberjar
+           {:extra-deps
+            {uberdeps {:mvn/version "0.1.10"}}
+            :main-opts ["-m" "uberdeps.uberjar"]}}}
