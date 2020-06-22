@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>🚀 Let's hack</h1>
+        <h1><span role="img" aria-label="rocket">🚀</span> Let's hack</h1>
       </header>
     </div>
   );
