@@ -13,18 +13,22 @@ dev-tmux:
 	tmux send 'echo "time to roll 🚀"' ENTER
 	tmux a
 
-prod-deploy:
-	echo "1. build client"
+prod-build-jar:
+	echo "-. build client"
 	cd client && yarn build
 
-	echo "2. move to resources"
+	echo "-. move to resources"
 	cd .. 
 	rm -rf resources/public
 	mv client/build resources/public
 
-	echo "3. build uberjar"
+	echo "-. build uberjar"
 	clojure -Spom && clojure -A:uberjar clap.jar -C -m clap.core
 
-	echo "4. deploy"
-	# todo
-	PORT=4000 java -jar clap.jar
+	echo "-. cleanup client"
+	rm -rf resources/public
+
+prod-deploy:
+	make prod-build-jar
+	gcloud app deploy
+	rm clap.jar
