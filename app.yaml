@@ -1,3 +1,3 @@
 runtime: java
 env: flex
-entrypoint: java -jar target/clap.jar
+entrypoint: java -jar clap.jar
