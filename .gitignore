@@ -4,3 +4,4 @@
 .nrepl-port
 resources/public
 target
+classes

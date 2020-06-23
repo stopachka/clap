@@ -1,4 +1,4 @@
-{:paths ["server", "resources"]
+{:paths ["server" "resources" "classes"]
  :deps
  {ring/ring {:mvn/version "1.8.0"}
   ring/ring-json {:mvn/version "0.5.0"}
