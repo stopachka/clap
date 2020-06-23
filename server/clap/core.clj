@@ -1,5 +1,4 @@
 (ns clap.core
-  (:gen-class)
   (:require [ring.adapter.jetty :as jetty]
             [compojure.core :refer [defroutes ANY GET POST PUT DELETE]]
             [compojure.route :refer [resources]]
@@ -30,7 +29,7 @@
   (resources "/" {:root static-root})
   (GET "*" [] (render-static-file "index.html")))
 
-(defn -main []
+(defn -main [& _args]
   (let [port (Integer/parseInt (System/getenv "PORT"))
         app (-> routes
                 wrap-keyword-params

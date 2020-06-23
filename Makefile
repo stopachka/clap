@@ -23,4 +23,12 @@ prod-deploy:
 	mv client/build resources/public
 
 	echo "3. build uberjar"
-	clj -A:uberjar
+	rm -rf classes
+	rm -rf target
+	mkdir classes
+	clj -e "(compile 'clap.core)"
+	clojure -A:uberjar --main-class clap.core
+
+	echo "4. deploy"
+	# todo
+	java -jar target/clap.jar
