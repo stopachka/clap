@@ -1,4 +1,5 @@
 (ns clap.core
+  (:gen-class)
   (:require [ring.adapter.jetty :as jetty]
             [compojure.core :refer [defroutes ANY GET POST PUT DELETE]]
             [compojure.route :refer [resources]]
