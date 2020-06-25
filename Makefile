@@ -27,8 +27,3 @@ prod-build-jar:
 
 	echo "-. cleanup client"
 	rm -rf resources/public
-
-prod-deploy:
-	make prod-build-jar
-	gcloud app deploy
-	rm clap.jar
