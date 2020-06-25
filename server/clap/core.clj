@@ -30,9 +30,18 @@
   (resources "/" {:root static-root})
   (GET "*" [] (render-static-file "index.html")))
 
+(defn wrap-cors [handler]
+  (fn [request]
+    (assoc-in (handler request)
+              [:headers "Access-Control-Allow-Origin"]
+              "*")))
+;; ---
+;; serve static assets
+
 (defn -main [& _args]
   (let [port (Integer/parseInt (System/getenv "PORT"))
         app (-> routes
+                wrap-cors
                 wrap-keyword-params
                 ring.middleware.params/wrap-params
                 (wrap-json-body {:keywords? true})
